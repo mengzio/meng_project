@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<resultMap type="java.util.HashMap" id="camelCaseMap">
+    <result property="testSeq" column="TEST_SEQ"/>
+    <result property="testInfo" column="TEST_INFO"/>
+</resultMap>
+
+<mapper namespace="org.admin.mapper.HomeMybatis">
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM HELP
+	</select>
+	
+	
+	<select id="getTestList" resultType="camelCaseMap">
+	SELECT DISTINCT
+		SEQ AS TEST_SEQ
+		,INFO AS TEST_INFO
+	FROM HELP
+	WHERE ROWNUM <![CDATA[<=]]> 10
+	ORDER BY SEQ
+	</select>
+	
+	
+	
+</mapper>
